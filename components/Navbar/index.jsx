@@ -11,11 +11,11 @@ const Navbar = () => {
           </span>
         </a>
         <GitHubButton
-          href="https://github.com/google/latexify_py"
+          href="https://github.com/jianan1104/vagrantfile-generator"
           data-icon="octicon-star"
           data-size="large"
           data-show-count="true"
-          aria-label="Star google/latexify_py on GitHub"
+          aria-label="Star google/vagrantfile-generator on GitHub"
         >
           Star
         </GitHubButton>
