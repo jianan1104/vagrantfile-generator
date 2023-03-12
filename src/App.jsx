@@ -3,17 +3,14 @@ import Handlebars from "handlebars";
 import template from "./template";
 import SyntaxHighlighter from "react-syntax-highlighter";
 import { atomOneDark } from "react-syntax-highlighter/dist/esm/styles/hljs";
-import {
-  BoxesList,
-  Navbar,
-  ProviderList,
-  MemoryOptions,
-  CpuOptions,
-  Footer,
-  TextInput,
-} from "../components";
+import { Navbar, Footer, TextInput, RadioCard } from "../components";
 import { saveAs } from "file-saver";
-import { boxes } from "../components/BoxesList/constants";
+import {
+  boxes,
+  providers,
+  cpuOptions,
+  memoryOptions,
+} from "../components/constants";
 
 const VagrantConfigGenerator = () => {
   const [generated, setGenerate] = useState(false);
@@ -67,7 +64,7 @@ const VagrantConfigGenerator = () => {
           >
             <p
               id="helper-text-explanation"
-              className="mt-2 text-sm text-gray-500 dark:text-gray-400"
+              className="mt-2 text-sm text-gray-500 dark:text-gray-400 mb-2"
             >
               Want to search a box? Find{" "}
               <a
@@ -76,27 +73,75 @@ const VagrantConfigGenerator = () => {
                 href="https://app.vagrantup.com/boxes/search"
                 className="font-medium text-blue-600 hover:underline dark:text-blue-500"
               >
-                box
+                boxes
               </a>
               .
             </p>
-            <BoxesList
-              handleInputChange={handleInputChange}
-              formData={formData.box}
-            />
+            <ul className="grid w-full gap-6 md:grid-cols-4 sm:grid-cols-2">
+              {boxes.map((box) => (
+                <RadioCard
+                  item={box}
+                  value="box"
+                  handleInputChange={handleInputChange}
+                  formData={formData.box}
+                />
+              ))}
+            </ul>
           </TextInput>
-          <ProviderList
-            handleInputChange={handleInputChange}
-            formData={formData.provider}
-          />
-          <CpuOptions
-            handleInputChange={handleInputChange}
-            formData={formData.cpus}
-          />
-          <MemoryOptions
-            handleInputChange={handleInputChange}
-            formData={formData.memory}
-          />
+          <div className="mb-4">
+            <label
+              className="block text-gray-700 font-bold mb-2"
+              htmlFor="provider"
+            >
+              Provider
+            </label>
+            <ul className="grid w-full gap-6 md:grid-cols-4 sm:grid-cols-2">
+              {providers.map((provider) => (
+                <RadioCard
+                  item={provider}
+                  value="provider"
+                  handleInputChange={handleInputChange}
+                  formData={formData.provider}
+                />
+              ))}
+            </ul>
+          </div>
+          <div className="mb-4">
+            <label
+              className="block text-gray-700 font-bold mb-2"
+              htmlFor="cpus"
+            >
+              CPUs
+            </label>
+            <ul className="grid w-full gap-6 md:grid-cols-4 sm:grid-cols-2">
+              {cpuOptions.map((cpuOption) => (
+                <RadioCard
+                  item={cpuOption}
+                  value="cpus"
+                  handleInputChange={handleInputChange}
+                  formData={formData.cpus}
+                />
+              ))}
+            </ul>
+          </div>
+          <div className="mb-4">
+            <label
+              className="block text-gray-700 font-bold mb-2"
+              htmlFor="memory"
+            >
+              Memory
+            </label>
+            <ul className="grid w-full gap-6 md:grid-cols-4 sm:grid-cols-2">
+              {memoryOptions.map((memoryOption) => (
+                <RadioCard
+                  item={memoryOption}
+                  value="memory"
+                  handleInputChange={handleInputChange}
+                  formData={formData.memory}
+                />
+              ))}
+            </ul>
+          </div>
           <TextInput
             handleInputChange={handleInputChange}
             formData={formData.ip}

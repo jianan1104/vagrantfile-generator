@@ -1,8 +1,8 @@
-export const boxes = [
+const boxes = [
   {
     id: "ubuntu2004",
     value: "ubuntu/focal64",
-    name: "Ubuntu 20.04 LTS",
+    name: "Ubuntu 20.04",
     src: "https://upload.wikimedia.org/wikipedia/commons/a/ab/Logo-ubuntu_cof-orange-hex.svg",
   },
   {
@@ -24,3 +24,5 @@ export const boxes = [
     src: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Fedora_icon_%282021%29.svg/2089px-Fedora_icon_%282021%29.svg.png",
   },
 ];
+
+export default boxes;
