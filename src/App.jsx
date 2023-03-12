@@ -55,7 +55,7 @@ const VagrantConfigGenerator = () => {
   return (
     <>
       <Navbar />
-      <div className="container mx-auto my-4">
+      <div className="container mx-auto my-4 p-4">
         <form onSubmit={handleFinish}>
           <TextInput
             handleInputChange={handleInputChange}

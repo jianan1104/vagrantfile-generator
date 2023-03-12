@@ -9,7 +9,6 @@ const RadioCard = ({ item, value, handleInputChange, formData }) => {
           value={item.value}
           className="peer hidden"
           onChange={handleInputChange}
-          checked={formData === item.value}
         />
         <label
           htmlFor={item.id}
