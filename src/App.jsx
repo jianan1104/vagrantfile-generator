@@ -203,7 +203,6 @@ const VagrantConfigGenerator = () => {
 };
 
 export default VagrantConfigGenerator;
-// import React, { useState } from "react";
 // import Handlebars from "handlebars";
 // import template from "./template";
 // import SyntaxHighlighter from "react-syntax-highlighter";
