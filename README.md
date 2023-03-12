@@ -1,3 +1,5 @@
+![screenshot](https://i.imgur.com/GJAhh9I.png)
+
 # VagrantFile Generator
 VagrantFile Generator is a tool that allows you to quickly generate Vagrant configuration files and set up your development environment. It supports multiple operating systems, different virtual machines, and software to make your development environment more flexible and convenient.
 
