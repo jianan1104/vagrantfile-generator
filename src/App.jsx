@@ -17,6 +17,7 @@ const VagrantConfigGenerator = () => {
   const [config, setConfig] = useState("");
   const [formData, setFormData] = useState({
     box: "ubuntu/focal64",
+    name: "webserver_nginx",
     hostname: "webserver",
     provider: "virtualbox",
     ip: "",
@@ -148,10 +149,10 @@ const VagrantConfigGenerator = () => {
           </div>
           <TextInput
             handleInputChange={handleInputChange}
-            formData={formData.ip}
-            name="IP Address"
-            value="ip"
-            holder="192.168.33.10"
+            formData={formData.name}
+            name="Machine Name"
+            value="name"
+            holder="VM Name"
           />
           <TextInput
             handleInputChange={handleInputChange}
@@ -159,6 +160,13 @@ const VagrantConfigGenerator = () => {
             name="Host Name"
             value="hostname"
             holder="webserver"
+          />
+          <TextInput
+            handleInputChange={handleInputChange}
+            formData={formData.ip}
+            name="IP Address"
+            value="ip"
+            holder="192.168.33.10"
           />
           <button
             type="submit"

@@ -1,7 +1,7 @@
 import Handlebars from "handlebars";
 
-Handlebars.registerHelper('or', function(arg1, arg2, options) {
-  if (arg1 || arg2) {
+Handlebars.registerHelper("or", function (arg1, arg2, arg3, options) {
+  if (arg1 || arg2 || argg3) {
     return options.fn(this);
   } else {
     return options.inverse(this);
@@ -19,13 +19,16 @@ Vagrant.configure('2') do |config|
   {{/if}}
   {{#if provider}}
   config.vm.provider "{{provider}}" do |vb|
+  {{#if name}}
+    vb.name = '{{name}}'
+  {{/if}}
   {{#if cpus}}
     vb.cpus = '{{cpus}}'
   {{/if}}
   {{#if memory}}
     vb.memory = '{{memory}}'
   {{/if}}
-  {{#or cpus memory}}
+  {{#or cpus memory name}}
   end
   {{/or}}
   {{/if}}
