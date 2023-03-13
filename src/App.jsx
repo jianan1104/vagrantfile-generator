@@ -78,7 +78,7 @@ const VagrantConfigGenerator = () => {
               </a>
               .
             </p>
-            <ul className="grid w-full gap-6 md:grid-cols-4 sm:grid-cols-2">
+            <ul className="grid w-full gap-6 md:grid-cols-4 grid-cols-2">
               {boxes.map((box) => (
                 <RadioCard
                   key={box.id}
@@ -97,7 +97,7 @@ const VagrantConfigGenerator = () => {
             >
               Provider
             </label>
-            <ul className="grid w-full gap-6 md:grid-cols-4 sm:grid-cols-2">
+            <ul className="grid w-full gap-6 md:grid-cols-4 grid-cols-2">
               {providers.map((provider) => (
                 <RadioCard
                   key={provider.id}
@@ -116,7 +116,7 @@ const VagrantConfigGenerator = () => {
             >
               CPUs
             </label>
-            <ul className="grid w-full gap-6 md:grid-cols-4 sm:grid-cols-2">
+            <ul className="grid w-full gap-6 md:grid-cols-4 grid-cols-2">
               {cpuOptions.map((cpuOption) => (
                 <RadioCard
                   key={cpuOption.id}
@@ -135,7 +135,7 @@ const VagrantConfigGenerator = () => {
             >
               Memory
             </label>
-            <ul className="grid w-full gap-6 md:grid-cols-4 sm:grid-cols-2">
+            <ul className="grid w-full gap-6 md:grid-cols-4 grid-cols-2">
               {memoryOptions.map((memoryOption) => (
                 <RadioCard
                   key={memoryOption.id}
