@@ -9,14 +9,14 @@ To get started with VagrantFile Generator, you'll need to have Vagrant and Virtu
 ## Installing
 To install VagrantFile Generator, simply clone this repository to your local machine:
 
-```bash
+```shell
 git clone https://github.com/your_username/vagrantfile-generator.git
 ```
 
 ## Usage
 To use VagrantFile Generator, run the following command:
 
-```bash
+```shell
 yarn dev
 ```
 This will launch the VagrantFile Generator GUI, which will allow you to configure your Vagrantfile.
