@@ -25,5 +25,7 @@ This will launch the VagrantFile Generator GUI, which will allow you to configur
 ## Contributing
 Contributions are always welcome! If you have any suggestions for new features or improvements, please feel free to open an issue or submit a pull request.
 
-License
+## License
 This project is licensed under the MIT License - see the LICENSE file for details.
+
+[![Stargazers repo roster for @jianan1104/vagrantfile-generator](https://reporoster.com/stars/jianan1104/vagrantfile-generator)](https://github.com/jianan1104/vagrantfile-generator/stargazers)
