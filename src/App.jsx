@@ -4,7 +4,6 @@ import template from "./template";
 import SyntaxHighlighter from "react-syntax-highlighter";
 import { atomOneDark } from "react-syntax-highlighter/dist/esm/styles/hljs";
 import { Navbar, Footer, TextInput, RadioCard } from "../components";
-import { saveAs } from "file-saver";
 import {
   boxes,
   providers,
@@ -49,7 +48,12 @@ const VagrantConfigGenerator = () => {
 
   const downloadConfig = useCallback(() => {
     const blob = new Blob([config], { type: "application/octet-stream" });
-    saveAs(blob, "Vagrantfile");
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = "Vagrantfile";
+    link.click();
+    URL.revokeObjectURL(url);
   }, [config]);
 
   return (
