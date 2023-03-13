@@ -12,6 +12,7 @@ import {
 } from "../components/constants";
 
 const VagrantConfigGenerator = () => {
+  const [downloadLink, setDownloadLink] = useState("");
   const [generated, setGenerate] = useState(false);
   const [config, setConfig] = useState("");
   const [formData, setFormData] = useState({
@@ -35,6 +36,13 @@ const VagrantConfigGenerator = () => {
     [setFormData]
   );
 
+  const generateConfig = useCallback(() => {
+    const blob = new Blob([config], { type: "application/octet-stream" });
+    const url = URL.createObjectURL(blob);
+    setDownloadLink(url);
+    console.log(url);
+  }, [config]);
+
   const handleFinish = useCallback(
     (event) => {
       event.preventDefault();
@@ -42,19 +50,10 @@ const VagrantConfigGenerator = () => {
       const generatedConfig = compiledTemplate(formData);
       setConfig(generatedConfig);
       setGenerate(true);
+      generateConfig();
     },
     [formData]
   );
-
-  const downloadConfig = useCallback(() => {
-    const blob = new Blob([config], { type: "application/octet-stream" });
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement("a");
-    link.href = url;
-    link.download = "Vagrantfile";
-    link.click();
-    URL.revokeObjectURL(url);
-  }, [config]);
 
   return (
     <>
@@ -192,12 +191,13 @@ const VagrantConfigGenerator = () => {
             >
               {config}
             </SyntaxHighlighter>
-            <button
-              onClick={downloadConfig}
+            <a
+              href={downloadLink}
+              download="Vagrantfile"
               className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
             >
               Download Config
-            </button>
+            </a>
           </div>
         )}
         <Footer />
