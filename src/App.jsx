@@ -7,6 +7,7 @@ import {
   providers,
   cpuOptions,
   memoryOptions,
+  providerOptions,
 } from "../components/constants";
 
 import AceEditor from "react-ace";
@@ -27,25 +28,24 @@ const VagrantConfigGenerator = () => {
     cpus: "1",
   });
 
-  const handleInputChange = useCallback(
-    (event) => {
-      const { name, value } = event.target;
-      setFormData((formData) => ({
-        ...formData,
-        [name]: value.trim(),
-      }));
-    },
-    [setFormData]
-  );
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    console.log(name, value)
+    setFormData((formData) => ({
+      ...formData,
+      [name]: value.trim(),
+    }));
+    if (generated) {
+      const generatedConfig = generateConfig();
+      setConfig(generatedConfig);
+    }
+  };
 
-  const generateDownloadLink = React.useCallback(
-    (value) => {
-      const blob = new Blob([value], { type: "application/octet-stream" });
-      const url = URL.createObjectURL(blob);
-      setDownloadLink(url);
-    },
-    [config]
-  );
+  const generateDownloadLink = (value) => {
+    const blob = new Blob([value], { type: "application/octet-stream" });
+    const url = URL.createObjectURL(blob);
+    setDownloadLink(url);
+  };
 
   const onEditorChange = (value) => {
     setConfig(value);
@@ -55,18 +55,16 @@ const VagrantConfigGenerator = () => {
   const generateConfig = useCallback(() => {
     const compiledTemplate = Handlebars.compile(template);
     const generatedConfig = compiledTemplate(formData);
+    generateDownloadLink(generatedConfig);
     return generatedConfig;
-  }, [config]);
+  }, [formData]);
 
-  const handleFinish = useCallback(
-    (event) => {
-      event.preventDefault();
-      const generatedConfig = generateConfig();
-      setConfig(generatedConfig);
-      setGenerate(true);
-    },
-    [formData]
-  );
+  const handleFinish = (event) => {
+    event.preventDefault();
+    const generatedConfig = generateConfig();
+    setConfig(generatedConfig);
+    setGenerate(true);
+  };
 
   return (
     <>
@@ -113,6 +111,20 @@ const VagrantConfigGenerator = () => {
             >
               Provider
             </label>
+            <select
+              id="provider"
+              className="mb-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              name="provider"
+              value={formData.provider}
+              onChange={handleInputChange}
+            >
+              <option value="">Choose a provider</option>
+              {providerOptions.map((provider) => (
+                <option key={provider.value} value={provider.value} >
+                  {provider.value}
+                </option>
+              ))}
+            </select>
             <ul className="grid w-full gap-6 md:grid-cols-4 grid-cols-2">
               {providers.map((provider) => (
                 <RadioCard
@@ -209,9 +221,6 @@ const VagrantConfigGenerator = () => {
               value={config}
               width="100%"
               setOptions={{
-                enableBasicAutocompletion: true,
-                enableLiveAutocompletion: true,
-                enableSnippets: true,
                 showLineNumbers: true,
                 tabSize: 2,
               }}
