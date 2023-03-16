@@ -32,7 +32,6 @@ const VagrantConfigGenerator = () => {
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
-    console.log(name, value);
     setFormData((formData) => ({
       ...formData,
       [name]: value.trim(),
@@ -40,6 +39,22 @@ const VagrantConfigGenerator = () => {
     if (generated) {
       const generatedConfig = generateConfig();
       setConfig(generatedConfig);
+    }
+    if(name === "provider" && event.target.tagName === "INPUT"){
+      switch (value) {
+        case "virtualbox":
+          setSelectedGroup(virtualizationGroups[0])
+          break;
+        case "hyperv":
+          setSelectedGroup(virtualizationGroups[0])
+          break;
+        case "docker":
+          setSelectedGroup(virtualizationGroups[1])
+          break;
+        case "vmware_desktop":
+          setSelectedGroup(virtualizationGroups[3])
+          break;
+      }
     }
   };
 
@@ -126,7 +141,8 @@ const VagrantConfigGenerator = () => {
               <select
                 id="countries"
                 onChange={handleGroupChange}
-                class="flex-shrink-0 z-10 inline-flex items-center py-2.5 px-4 text-sm font-medium text-center text-gray-500 bg-gray-100 border border-gray-300 rounded-l-lg hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700 dark:text-white dark:border-gray-600"
+                value={selectedGroup.name}
+                className="flex-shrink-0 z-10 inline-flex items-center py-2.5 px-4 text-sm font-medium text-center text-gray-500 bg-gray-100 border border-gray-300 rounded-l-lg hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700 dark:text-white dark:border-gray-600"
               >
                 {virtualizationGroups.map((group) => (
                   <option key={group.id} value={group.name}>
