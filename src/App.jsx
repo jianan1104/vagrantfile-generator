@@ -1,8 +1,6 @@
 import React, { useState, useCallback } from "react";
 import Handlebars from "handlebars";
 import template from "./template";
-import SyntaxHighlighter from "react-syntax-highlighter";
-import { atomOneDark } from "react-syntax-highlighter/dist/esm/styles/hljs";
 import { Navbar, Footer, TextInput, RadioCard } from "../components";
 import {
   boxes,
@@ -195,7 +193,7 @@ const VagrantConfigGenerator = () => {
         </form>
         {generated && (
           <div className="mb-4">
-            <h2 className="text-4xl font-bold dark:text-white mb-4">
+            <h2 className="text-3xl font-bold dark:text-white mb-4">
               Preview 👀
             </h2>
             <AceEditor
