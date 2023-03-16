@@ -8,6 +8,7 @@ import {
   cpuOptions,
   memoryOptions,
   providerOptions,
+  virtualizationGroups,
 } from "../components/constants";
 
 import AceEditor from "react-ace";
@@ -15,6 +16,7 @@ import "ace-builds/src-noconflict/mode-ruby";
 import "ace-builds/src-noconflict/theme-monokai";
 
 const VagrantConfigGenerator = () => {
+  const [selectedGroup, setSelectedGroup] = useState(virtualizationGroups[0]);
   const [downloadLink, setDownloadLink] = useState("");
   const [generated, setGenerate] = useState(false);
   const [config, setConfig] = useState("");
@@ -30,7 +32,7 @@ const VagrantConfigGenerator = () => {
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
-    console.log(name, value)
+    console.log(name, value);
     setFormData((formData) => ({
       ...formData,
       [name]: value.trim(),
@@ -66,9 +68,17 @@ const VagrantConfigGenerator = () => {
     setGenerate(true);
   };
 
+  const handleGroupChange = (event) => {
+    const selected = virtualizationGroups.find(
+      (c) => c.name === event.target.value
+    );
+    setSelectedGroup(selected);
+  };
+
   return (
     <>
       <Navbar />
+
       <div className="container mx-auto my-4 p-4">
         <form onSubmit={handleFinish}>
           <TextInput
@@ -111,20 +121,36 @@ const VagrantConfigGenerator = () => {
             >
               Provider
             </label>
-            <select
-              id="provider"
-              className="mb-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              name="provider"
-              value={formData.provider}
-              onChange={handleInputChange}
-            >
-              <option value="">Choose a provider</option>
-              {providerOptions.map((provider) => (
-                <option key={provider.value} value={provider.value} >
-                  {provider.value}
-                </option>
-              ))}
-            </select>
+
+            <div className="flex mb-2">
+              <select
+                id="countries"
+                onChange={handleGroupChange}
+                class="flex-shrink-0 z-10 inline-flex items-center py-2.5 px-4 text-sm font-medium text-center text-gray-500 bg-gray-100 border border-gray-300 rounded-l-lg hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700 dark:text-white dark:border-gray-600"
+              >
+                {virtualizationGroups.map((group) => (
+                  <option key={group.id} value={group.name}>
+                    {group.name}
+                  </option>
+                ))}
+              </select>
+              <label htmlFor="groups" className="sr-only">
+                Choose a provider
+              </label>
+              <select
+                id="groups"
+                name="provider"
+                value={formData.provider}
+                onChange={handleInputChange}
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-r-lg border-l-gray-100 dark:border-l-gray-700 border-l-2 focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              >
+                {selectedGroup.items.map((provider, idx) => (
+                  <option key={idx} value={provider}>
+                    {provider}
+                  </option>
+                ))}
+              </select>
+            </div>
             <ul className="grid w-full gap-6 md:grid-cols-4 grid-cols-2">
               {providers.map((provider) => (
                 <RadioCard
@@ -241,139 +267,3 @@ const VagrantConfigGenerator = () => {
 };
 
 export default VagrantConfigGenerator;
-// import Handlebars from "handlebars";
-// import template from "./template";
-// import SyntaxHighlighter from "react-syntax-highlighter";
-// import { atomOneDark } from "react-syntax-highlighter/dist/esm/styles/hljs";
-// import {
-//   BoxesList,
-//   Navbar,
-//   ProviderList,
-//   MemoryOptions,
-//   CpuOptions,
-//   Footer,
-//   TextInput,
-// } from "../components";
-// import { saveAs } from "file-saver";
-
-// const VagrantConfigGenerator = () => {
-//   const [generated, setGenerate] = useState(false);
-//   const [config, setConfig] = useState("");
-//   const [formData, setFormData] = useState({
-//     box: "ubuntu/bionic64",
-//     hostname: "webserver",
-//     provider: "virtualbox",
-//     ip: "",
-//     memory: "512",
-//     cpus: "1",
-//   });
-
-//   const handleInputChange = (event) => {
-//     const { name, value } = event.target;
-//     setFormData({ ...formData, [name]: value.trim() });
-//   };
-
-//   const handleFinish = (event) => {
-//     event.preventDefault();
-//     const compiledTemplate = Handlebars.compile(template);
-//     const generatedConfig = compiledTemplate(formData);
-//     setConfig(generatedConfig);
-//     setGenerate(true);
-//   };
-
-//   const downloadConfig = () => {
-//     const blob = new Blob([config], { type: "application/octet-stream" });
-//     saveAs(blob, "Vagrantfile");
-//   };
-
-//   return (
-//     <>
-//       <Navbar />
-//       <div className="container mx-auto my-4">
-//         <form onSubmit={handleFinish}>
-//           <TextInput
-//             handleInputChange={handleInputChange}
-//             formData={formData}
-//             name="Box"
-//             value="box"
-//           >
-//             <p
-//               id="helper-text-explanation"
-//               className="mt-2 text-sm text-gray-500 dark:text-gray-400"
-//             >
-//               Want to search a box? Find{" "}
-//               <a
-//                 target="_blank"
-//                 href="https://app.vagrantup.com/boxes/search"
-//                 className="font-medium text-blue-600 hover:underline dark:text-blue-500"
-//               >
-//                 box
-//               </a>
-//               .
-//             </p>
-//             <BoxesList
-//               handleInputChange={handleInputChange}
-//               formData={formData}
-//             />
-//           </TextInput>
-//           <ProviderList
-//             handleInputChange={handleInputChange}
-//             formData={formData}
-//           />
-//           <CpuOptions
-//             handleInputChange={handleInputChange}
-//             formData={formData}
-//           />
-//           <MemoryOptions
-//             handleInputChange={handleInputChange}
-//             formData={formData}
-//           />
-//           <TextInput
-//             handleInputChange={handleInputChange}
-//             formData={formData}
-//             name="IP Address"
-//             value="ip"
-//             holder="192.168.33.10"
-//           />
-//           <TextInput
-//             handleInputChange={handleInputChange}
-//             formData={formData}
-//             name="Host Name"
-//             value="hostname"
-//             holder="webserver"
-//           />
-//           <button
-//             type="submit"
-//             className="mb-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-//           >
-//             Generate Config
-//           </button>
-//         </form>
-//         {generated ? (
-//           <div className="mb-4">
-//             <h2 className="text-4xl font-bold dark:text-white mb-4">
-//               Preview 👀
-//             </h2>
-//             <SyntaxHighlighter
-//               language="ruby"
-//               style={atomOneDark}
-//               showLineNumbers
-//               className="mb-4"
-//             >
-//               {config}
-//             </SyntaxHighlighter>
-//             <button
-//               onClick={downloadConfig}
-//               className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-//             >
-//               Download Config
-//             </button>
-//           </div>
-//         ) : null}
-//         <Footer />
-//       </div>
-//     </>
-//   );
-// };
-
-// export default VagrantConfigGenerator;
