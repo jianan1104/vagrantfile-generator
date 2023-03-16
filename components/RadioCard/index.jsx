@@ -20,7 +20,7 @@ const RadioCard = ({ item, value, handleInputChange, formData }) => {
             <div className="text-center text-lg font-semibold">{item.name}</div>
             {item.src ? (
               <div className="flex justify-center items-center">
-                <img src={item.src} className="mr-3 h-10 sm:h-20" />
+                <img src={item.src} className="h-20" />
               </div>
             ) : null}
           </div>

@@ -40,19 +40,17 @@ const VagrantConfigGenerator = () => {
       const generatedConfig = generateConfig();
       setConfig(generatedConfig);
     }
-    if(name === "provider" && event.target.tagName === "INPUT"){
+    if (name === "provider" && event.target.tagName === "INPUT") {
       switch (value) {
         case "virtualbox":
-          setSelectedGroup(virtualizationGroups[0])
-          break;
         case "hyperv":
-          setSelectedGroup(virtualizationGroups[0])
+          setSelectedGroup(virtualizationGroups[0]);
           break;
         case "docker":
-          setSelectedGroup(virtualizationGroups[1])
+          setSelectedGroup(virtualizationGroups[1]);
           break;
         case "vmware_desktop":
-          setSelectedGroup(virtualizationGroups[3])
+          setSelectedGroup(virtualizationGroups[3]);
           break;
       }
     }
