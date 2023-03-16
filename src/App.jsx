@@ -11,6 +11,10 @@ import {
   memoryOptions,
 } from "../components/constants";
 
+import AceEditor from "react-ace";
+import "ace-builds/src-noconflict/mode-ruby";
+import "ace-builds/src-noconflict/theme-monokai";
+
 const VagrantConfigGenerator = () => {
   const [downloadLink, setDownloadLink] = useState("");
   const [generated, setGenerate] = useState(false);
@@ -36,21 +40,32 @@ const VagrantConfigGenerator = () => {
     [setFormData]
   );
 
+  const generateDownloadLink = React.useCallback(
+    (value) => {
+      const blob = new Blob([value], { type: "application/octet-stream" });
+      const url = URL.createObjectURL(blob);
+      setDownloadLink(url);
+    },
+    [config]
+  );
+
+  const onEditorChange = (value) => {
+    setConfig(value);
+    generateDownloadLink(value);
+  };
+
   const generateConfig = useCallback(() => {
-    const blob = new Blob([config], { type: "application/octet-stream" });
-    const url = URL.createObjectURL(blob);
-    setDownloadLink(url);
-    console.log(url);
+    const compiledTemplate = Handlebars.compile(template);
+    const generatedConfig = compiledTemplate(formData);
+    return generatedConfig;
   }, [config]);
 
   const handleFinish = useCallback(
     (event) => {
       event.preventDefault();
-      const compiledTemplate = Handlebars.compile(template);
-      const generatedConfig = compiledTemplate(formData);
+      const generatedConfig = generateConfig();
       setConfig(generatedConfig);
       setGenerate(true);
-      generateConfig();
     },
     [formData]
   );
@@ -183,14 +198,26 @@ const VagrantConfigGenerator = () => {
             <h2 className="text-4xl font-bold dark:text-white mb-4">
               Preview 👀
             </h2>
-            <SyntaxHighlighter
-              language="ruby"
-              style={atomOneDark}
-              showLineNumbers
+            <AceEditor
               className="mb-4"
-            >
-              {config}
-            </SyntaxHighlighter>
+              mode="ruby"
+              theme="monokai"
+              name="editor"
+              onChange={onEditorChange}
+              fontSize={14}
+              showPrintMargin={true}
+              showGutter={true}
+              highlightActiveLine={true}
+              value={config}
+              width="100%"
+              setOptions={{
+                enableBasicAutocompletion: true,
+                enableLiveAutocompletion: true,
+                enableSnippets: true,
+                showLineNumbers: true,
+                tabSize: 2,
+              }}
+            />
             <a
               href={downloadLink}
               download="Vagrantfile"

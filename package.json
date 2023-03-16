@@ -11,11 +11,13 @@
   },
   "dependencies": {
     "@uiw/react-codemirror": "^4.19.9",
+    "ace-builds": "^1.15.3",
     "file-saver": "^2.0.5",
     "flowbite": "^1.6.4",
     "flowbite-react": "^0.4.2",
     "handlebars": "^4.7.7",
     "react": "^18.2.0",
+    "react-ace": "^10.1.0",
     "react-dom": "^18.2.0",
     "react-github-btn": "^1.4.0",
     "react-syntax-highlighter": "^15.5.0"
