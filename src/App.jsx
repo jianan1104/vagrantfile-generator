@@ -7,7 +7,6 @@ import {
   providers,
   cpuOptions,
   memoryOptions,
-  providerOptions,
   virtualizationGroups,
 } from "../components/constants";
 
@@ -49,8 +48,16 @@ const VagrantConfigGenerator = () => {
         case "docker":
           setSelectedGroup(virtualizationGroups[1]);
           break;
+        case "aws":
+        case "google":
+        case "digitalocean":
+          setSelectedGroup(virtualizationGroups[2]);
+          break;
         case "vmware_desktop":
           setSelectedGroup(virtualizationGroups[3]);
+          break;
+        case "libvirt":
+          setSelectedGroup(virtualizationGroups[4]);
           break;
       }
     }

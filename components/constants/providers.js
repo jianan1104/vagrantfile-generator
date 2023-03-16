@@ -23,6 +23,30 @@ const providers = [
     name: "Hyper-V",
     src: "https://upload.wikimedia.org/wikipedia/commons/5/58/Hyper-V_Logo.png",
   },
+  {
+    id: "aws",
+    value: "aws",
+    name: "AWS",
+    src: "https://upload.wikimedia.org/wikipedia/commons/9/93/Amazon_Web_Services_Logo.svg",
+  },
+  {
+    id: "google",
+    value: "google",
+    name: "Google Cloud",
+    src: "https://cloud.google.com/_static/cloud/images/social-icon-google-cloud-1200-630.png?hl=zh-tw",
+  },
+  {
+    id: "digitalocean",
+    value: "digitalocean",
+    name: "DigitalOcean",
+    src: "https://upload.wikimedia.org/wikipedia/commons/f/ff/DigitalOcean_logo.svg",
+  },
+  {
+    id: "libvirt",
+    value: "libvirt",
+    name: "Libvirt",
+    src: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Libvirt_logo.svg/1200px-Libvirt_logo.svg.png",
+  },
+  
 ];
-
 export default providers;
