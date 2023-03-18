@@ -10,7 +10,7 @@ To get started with VagrantFile Generator, you'll need to have Vagrant and Virtu
 To install VagrantFile Generator, simply clone this repository to your local machine:
 
 ```shell
-git clone https://github.com/your_username/vagrantfile-generator.git
+git clone https://github.com/jianan1104/vagrantfile-generator.git
 ```
 
 ## Usage

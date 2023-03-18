@@ -69,10 +69,10 @@ const VagrantConfigGenerator = () => {
     setDownloadLink(url);
   };
 
-  const onEditorChange = (value) => {
+  const onEditorChange = useCallback((value) => {
     setConfig(value);
     generateDownloadLink(value);
-  };
+  }, [config]);
 
   const generateConfig = useCallback(() => {
     const compiledTemplate = Handlebars.compile(template);
@@ -98,7 +98,6 @@ const VagrantConfigGenerator = () => {
   return (
     <>
       <Navbar />
-
       <div className="container mx-auto my-4 p-4">
         <form onSubmit={handleFinish}>
           <TextInput
