@@ -1,7 +1,7 @@
 import Handlebars from "handlebars";
 
 Handlebars.registerHelper("or", function (arg1, arg2, arg3, options) {
-  if (arg1 || arg2 || argg3) {
+  if (arg1 || arg2 || arg3) {
     return options.fn(this);
   } else {
     return options.inverse(this);
