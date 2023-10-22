@@ -46,7 +46,7 @@ Vagrant.configure('2') do |config|
     {{#if provider}}
     machine.vm.provider "{{provider}}" do |vb|
       {{#if name}}
-      vb.name = "{{name}}-#{i}'
+      vb.name = "{{name}}-#{i}"
       {{/if}}
       {{#if cpus}}
       vb.cpus = '{{cpus}}'
