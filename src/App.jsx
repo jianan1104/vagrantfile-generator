@@ -27,6 +27,7 @@ const VagrantConfigGenerator = () => {
     ip: "",
     memory: "512",
     cpus: "1",
+    count: 1,
   });
 
   const handleInputChange = (event) => {
@@ -69,10 +70,13 @@ const VagrantConfigGenerator = () => {
     setDownloadLink(url);
   };
 
-  const onEditorChange = useCallback((value) => {
-    setConfig(value);
-    generateDownloadLink(value);
-  }, [config]);
+  const onEditorChange = useCallback(
+    (value) => {
+      setConfig(value);
+      generateDownloadLink(value);
+    },
+    [config]
+  );
 
   const generateConfig = useCallback(() => {
     const compiledTemplate = Handlebars.compile(template);
@@ -241,6 +245,14 @@ const VagrantConfigGenerator = () => {
             name="IP Address"
             value="ip"
             holder="192.168.33.10"
+          />
+          <TextInput
+            handleInputChange={handleInputChange}
+            formData={formData.count}
+            name="Count"
+            value="count"
+            holder="1"
+            type="number"
           />
           <button
             type="submit"
