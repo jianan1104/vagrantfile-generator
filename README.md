@@ -17,6 +17,7 @@ git clone https://github.com/jianan1104/vagrantfile-generator.git
 To use VagrantFile Generator, run the following command:
 
 ```shell
+yarn install
 yarn dev
 ```
 This will launch the VagrantFile Generator GUI, which will allow you to configure your Vagrantfile.
