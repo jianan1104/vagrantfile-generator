@@ -1,8 +1,18 @@
 kind: pipeline
 name: default
 
+
 steps:
 - name: test
   image: node
   commands:
   - npm install
+
+trigger:
+  branch:
+  - master
+  - dev
+  event:
+  - push
+  - pull_request
+  - tag
