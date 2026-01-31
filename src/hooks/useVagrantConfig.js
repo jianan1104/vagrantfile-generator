@@ -11,7 +11,7 @@ export const useVagrantConfig = () => {
   const [generated, setGenerated] = useState(false);
   const [config, setConfig] = useState("");
   const [formData, setFormData] = useState({
-    box: "ubuntu/focal64",
+    box: "ubuntu/jammy64",
     name: "webserver_nginx",
     hostname: "webserver",
     provider: "virtualbox",
