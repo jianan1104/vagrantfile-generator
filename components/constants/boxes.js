@@ -9,7 +9,7 @@ const boxes = [
     id: "rockylinux9",
     value: "rockylinux/9",
     name: "Rocky Linux 9",
-    src: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Rocky_Linux_logo.svg/600px-Rocky_Linux_logo.svg.png",
+    src: "https://upload.wikimedia.org/wikipedia/commons/7/77/Rocky_Linux_logo.svg",
   },
   {
     id: "centos7",
