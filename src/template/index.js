@@ -31,7 +31,14 @@ Vagrant.configure('2') do |config|
   {{/when}}
     machine.vm.box = '{{box}}'
     {{#if ip}}
+    {{#when count 'noteq' 1}}
+    ip_parts = '{{ip}}'.split('.')
+    last_octet = ip_parts.pop.to_i
+    machine.vm.network "private_network", ip: (ip_parts << (last_octet + i - 1)).join('.')
+    {{/when}}
+    {{#when count 'eq' 1}}
     machine.vm.network "private_network", ip: '{{ip}}'
+    {{/when}}
     {{/if}}
     {{#if hostname}}
     {{#when count 'noteq' 1}}
