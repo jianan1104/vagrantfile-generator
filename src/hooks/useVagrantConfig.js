@@ -18,6 +18,7 @@ export const useVagrantConfig = () => {
     ip: "",
     memory: "512",
     cpus: "1",
+    disk_size: "",
     count: 1,
   });
 
