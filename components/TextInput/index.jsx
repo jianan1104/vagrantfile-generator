@@ -1,4 +1,5 @@
-const TextInput = ({ name, value, holder, type, handleInputChange, formData, children}) => {
+import React from "react";
+const TextInput = ({ name, value, holder, type, handleInputChange, formData, children }) => {
   return (
     <div className="mb-4">
       <label
