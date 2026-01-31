@@ -30,6 +30,9 @@ Vagrant.configure('2') do |config|
   config.vm.define "{{hostname}}" do |machine|
   {{/when}}
     machine.vm.box = '{{box}}'
+    {{#if disk_size}}
+    machine.vm.disk :disk, size: '{{disk_size}}'
+    {{/if}}
     {{#if ip}}
     machine.vm.network "private_network", ip: '{{ip}}'
     {{/if}}

@@ -106,6 +106,13 @@ const VagrantConfigGenerator = () => {
           </div>
           <TextInput
             handleInputChange={handleInputChange}
+            formData={formData.disk_size}
+            name="Disk Size"
+            value="disk_size"
+            holder="20GB"
+          />
+          <TextInput
+            handleInputChange={handleInputChange}
             formData={formData.name}
             name="Machine Name"
             value="name"
