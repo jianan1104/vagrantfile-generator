@@ -34,7 +34,14 @@ Vagrant.configure('2') do |config|
     machine.vm.disk :disk, size: '{{disk_size}}'
     {{/if}}
     {{#if ip}}
+    {{#when count 'noteq' 1}}
+    ip_parts = '{{ip}}'.split('.')
+    last_octet = ip_parts.pop.to_i
+    machine.vm.network "private_network", ip: (ip_parts << (last_octet + i - 1)).join('.')
+    {{/when}}
+    {{#when count 'eq' 1}}
     machine.vm.network "private_network", ip: '{{ip}}'
+    {{/when}}
     {{/if}}
     {{#if hostname}}
     {{#when count 'noteq' 1}}
