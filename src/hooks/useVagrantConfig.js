@@ -67,6 +67,7 @@ export const useVagrantConfig = () => {
         case "aws":
         case "google":
         case "digitalocean":
+        case "yandex":
           setSelectedGroup(virtualizationGroups[2]);
           break;
         case "vmware_desktop":
