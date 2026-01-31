@@ -12,7 +12,7 @@ const virtualizationGroups = [
     {
       id: 3,
       name: 'Cloud Platform',
-      items: ['aws', 'cloudstack', 'digitalocean', 'google', 'openstack', 'rackspace', 'softlayer']
+      items: ['aws', 'cloudstack', 'digitalocean', 'google', 'openstack', 'rackspace', 'softlayer', 'yandex']
     },
     {
       id: 4,

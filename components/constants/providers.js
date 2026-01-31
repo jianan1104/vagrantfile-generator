@@ -42,6 +42,12 @@ const providers = [
     src: "https://upload.wikimedia.org/wikipedia/commons/f/ff/DigitalOcean_logo.svg",
   },
   {
+    id: "yandex",
+    value: "yandex",
+    name: "Yandex Cloud",
+    src: "https://upload.wikimedia.org/wikipedia/commons/5/5b/Yandex_cloud_logo_new.jpg",
+  },
+  {
     id: "libvirt",
     value: "libvirt",
     name: "Libvirt",
