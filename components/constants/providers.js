@@ -45,7 +45,7 @@ const providers = [
     id: "yandex",
     value: "yandex",
     name: "Yandex Cloud",
-    src: "https://upload.wikimedia.org/wikipedia/commons/4/4b/Yandex_Cloud_logo.svg",
+    src: "https://upload.wikimedia.org/wikipedia/commons/5/5b/Yandex_cloud_logo_new.jpg",
   },
   {
     id: "libvirt",
