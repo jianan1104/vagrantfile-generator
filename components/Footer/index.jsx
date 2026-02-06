@@ -3,26 +3,26 @@ import { Github } from "lucide-react";
 
 const Footer = () => {
   return (
-    <footer className="border-t py-6 mt-8">
+    <footer className="border-t border-border/50 py-8 mt-12">
       <div className="container flex flex-col items-center justify-between gap-4 md:flex-row">
-        <p className="text-sm text-muted-foreground">
+        <p className="text-xs text-muted-foreground">
           &copy; {new Date().getFullYear()}{" "}
           <a
             href="https://github.com/jianan1104/"
-            className="font-medium underline underline-offset-4 hover:text-foreground"
+            className="font-medium hover:text-foreground transition-colors"
           >
             jianan1104
           </a>
-          . All rights reserved.
+          . Built with care for the DevOps community.
         </p>
         <a
           href="https://github.com/jianan1104/vagrantfile-generator"
-          className="flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors"
+          className="flex items-center gap-1.5 text-xs text-muted-foreground hover:text-foreground transition-colors"
           target="_blank"
           rel="noreferrer"
         >
-          <Github className="h-4 w-4" />
-          GitHub
+          <Github className="h-3.5 w-3.5" />
+          Source on GitHub
         </a>
       </div>
     </footer>
