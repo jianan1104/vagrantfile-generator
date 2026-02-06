@@ -20,6 +20,7 @@ export const useVagrantConfig = () => {
     cpus: "1",
     disk_size: "",
     count: 1,
+    iterationStartFrom0: false,
   });
 
   const generateDownloadLink = (value) => {
@@ -33,7 +34,14 @@ export const useVagrantConfig = () => {
   };
 
   const generateConfig = useCallback((data = formData) => {
-    const generatedConfig = compiledTemplate(data);
+    const start = data.iterationStartFrom0 ? 0 : 1;
+    const end = data.iterationStartFrom0 ? Number(data.count) - 1 : Number(data.count);
+    const templateData = {
+      ...data,
+      iterationStart: start,
+      iterationEnd: end,
+    };
+    const generatedConfig = compiledTemplate(templateData);
     return generatedConfig;
   }, [formData]);
 
@@ -48,16 +56,16 @@ export const useVagrantConfig = () => {
                              // safer to just depend on formData and generated.
 
   const handleInputChange = (event) => {
-    const { name, value, tagName } = event.target;
-    const trimmedValue = value.trim();
+    const { name, value, tagName, type, checked } = event.target;
+    const newValue = type === "checkbox" ? checked : value.trim();
 
     setFormData((prev) => ({
       ...prev,
-      [name]: trimmedValue,
+      [name]: newValue,
     }));
 
     if (name === "provider" && tagName === "INPUT") {
-      switch (trimmedValue) {
+      switch (newValue) {
         case "virtualbox":
         case "hyperv":
           setSelectedGroup(virtualizationGroups[0]);
