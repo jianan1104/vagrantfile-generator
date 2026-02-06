@@ -140,6 +140,22 @@ const VagrantConfigGenerator = () => {
             holder="1"
             type="number"
           />
+          <div className="mb-4 flex items-center">
+            <input
+              id="iterationStartFrom0"
+              type="checkbox"
+              name="iterationStartFrom0"
+              checked={formData.iterationStartFrom0}
+              onChange={handleInputChange}
+              className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+            />
+            <label
+              htmlFor="iterationStartFrom0"
+              className="ml-2 text-sm font-medium text-gray-700 dark:text-gray-300"
+            >
+              Start iteration from 0
+            </label>
+          </div>
           <button
             type="submit"
             className="mb-4 bg-blue-500 hover:bg-blue-700 dark:bg-blue-600 dark:hover:bg-blue-800 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition-colors"
