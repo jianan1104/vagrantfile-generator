@@ -14,14 +14,17 @@
   },
   "dependencies": {
     "ace-builds": "^1.15.3",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
     "file-saver": "^2.0.5",
-    "flowbite": "^1.6.4",
-    "flowbite-react": "^0.4.2",
     "handlebars": "^4.7.7",
+    "lucide-react": "^0.563.0",
     "react": "^18.2.0",
     "react-ace": "^10.1.0",
     "react-dom": "^18.2.0",
-    "react-github-btn": "^1.4.0"
+    "react-github-btn": "^1.4.0",
+    "tailwind-merge": "^3.4.0",
+    "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
     "@types/react": "^18.0.27",

@@ -1,32 +1,39 @@
 import React from "react";
+import { cn } from "../../src/lib/utils";
+
 const RadioCard = ({ item, value, handleInputChange, formData }) => {
+  const isSelected = formData === item.value;
+
   return (
-    <>
-      <li key={item.id}>
-        <input
-          type="radio"
-          id={item.id}
-          name={value}
-          value={item.value}
-          className=" hidden"
-          onChange={handleInputChange}
-          checked={formData === item.value}
-        />
-        <label
-          htmlFor={item.id}
-          className={`inline-flex w-full cursor-pointer items-center justify-between rounded-lg border bg-white p-5 hover:bg-gray-100 hover:text-gray-600 dark:bg-gray-800 dark:hover:bg-gray-700 dark:hover:text-gray-300 transition-colors ${formData === item.value ? "border-blue-600 text-blue-600 dark:border-blue-500 dark:text-blue-500" : "border-gray-200 text-gray-500 dark:border-gray-700 dark:text-gray-400"}`}
-        >
-          <div className="flex-col items-center justify-center w-full">
-            <div className="text-center text-lg font-semibold">{item.name}</div>
-            {item.src ? (
-              <div className="flex justify-center items-center">
-                <img src={item.src} className="h-20" />
-              </div>
-            ) : null}
-          </div>
-        </label>
-      </li>
-    </>
+    <li>
+      <input
+        type="radio"
+        id={item.id}
+        name={value}
+        value={item.value}
+        className="hidden"
+        onChange={handleInputChange}
+        checked={isSelected}
+      />
+      <label
+        htmlFor={item.id}
+        className={cn(
+          "flex w-full cursor-pointer flex-col items-center justify-center gap-2 rounded-lg border-2 p-4 transition-all hover:bg-accent",
+          isSelected
+            ? "border-primary bg-accent shadow-sm"
+            : "border-border hover:border-muted-foreground/25"
+        )}
+      >
+        <span className="text-sm font-semibold">{item.name}</span>
+        {item.src && (
+          <img
+            src={item.src}
+            className="h-16 w-auto object-contain"
+            alt={item.name}
+          />
+        )}
+      </label>
+    </li>
   );
 };
 
