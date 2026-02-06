@@ -1,21 +1,30 @@
 import React from "react";
+import { Github } from "lucide-react";
+
 const Footer = () => {
   return (
-    <footer className="container p-4 bg-white md:flex md:items-center md:justify-between md:p-6 dark:bg-gray-800 transition-colors duration-200">
-      <span className="text-sm text-gray-500 sm:text-center dark:text-gray-400">
-        © 2023{" "}
-        <a href="https://github.com/jianan1104/" className="hover:underline">
-          jianan1104
-        </a>
-        . All Rights Reserved.
-      </span>
-      <ul className="flex flex-wrap items-center mt-3 text-sm text-gray-500 dark:text-gray-400 sm:mt-0">
-        <li>
-          <a href="https://github.com/jianan1104/vagrantfile-generator" className="mr-4 hover:underline md:mr-6 ">
-            Github
+    <footer className="border-t py-6 mt-8">
+      <div className="container flex flex-col items-center justify-between gap-4 md:flex-row">
+        <p className="text-sm text-muted-foreground">
+          &copy; {new Date().getFullYear()}{" "}
+          <a
+            href="https://github.com/jianan1104/"
+            className="font-medium underline underline-offset-4 hover:text-foreground"
+          >
+            jianan1104
           </a>
-        </li>
-      </ul>
+          . All rights reserved.
+        </p>
+        <a
+          href="https://github.com/jianan1104/vagrantfile-generator"
+          className="flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <Github className="h-4 w-4" />
+          GitHub
+        </a>
+      </div>
     </footer>
   );
 };
