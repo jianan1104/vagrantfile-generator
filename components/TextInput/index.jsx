@@ -3,7 +3,7 @@ const TextInput = ({ name, value, holder, type, handleInputChange, formData, chi
   return (
     <div className="mb-4">
       <label
-        className="block text-gray-700 font-bold mb-2"
+        className="block text-gray-700 dark:text-gray-200 font-bold mb-2"
         htmlFor={name}
         required
       >
