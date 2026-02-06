@@ -23,7 +23,7 @@ const VagrantConfigGenerator = () => {
   return (
     <>
       <Navbar />
-      <div className="container mx-auto my-4 p-4">
+      <div className="container mx-auto my-4 p-4 transition-colors duration-200">
         <form onSubmit={handleFinish}>
           <TextInput
             handleInputChange={handleInputChange}
@@ -68,7 +68,7 @@ const VagrantConfigGenerator = () => {
 
           <div className="mb-4">
             <label
-              className="block text-gray-700 font-bold mb-2"
+              className="block text-gray-700 dark:text-gray-200 font-bold mb-2"
               htmlFor="cpus"
             >
               CPUs
@@ -87,7 +87,7 @@ const VagrantConfigGenerator = () => {
           </div>
           <div className="mb-4">
             <label
-              className="block text-gray-700 font-bold mb-2"
+              className="block text-gray-700 dark:text-gray-200 font-bold mb-2"
               htmlFor="memory"
             >
               Memory
@@ -142,14 +142,14 @@ const VagrantConfigGenerator = () => {
           />
           <button
             type="submit"
-            className="mb-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            className="mb-4 bg-blue-500 hover:bg-blue-700 dark:bg-blue-600 dark:hover:bg-blue-800 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition-colors"
           >
             Generate Config
           </button>
         </form>
         {generated && (
           <div className="mb-4">
-            <h2 className="text-3xl font-bold dark:text-white mb-4">
+            <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
               Preview 👀
             </h2>
             <AceEditor
@@ -172,7 +172,7 @@ const VagrantConfigGenerator = () => {
             <a
               href={downloadLink}
               download="Vagrantfile"
-              className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              className="bg-green-500 hover:bg-green-700 dark:bg-green-600 dark:hover:bg-green-800 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition-colors"
             >
               Download Config
             </a>
