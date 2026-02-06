@@ -99,4 +99,19 @@
   .dark .terminal-bg {
     background: linear-gradient(180deg, hsl(222 47% 4%) 0%, hsl(222 47% 2.5%) 100%);
   }
+
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
 }
