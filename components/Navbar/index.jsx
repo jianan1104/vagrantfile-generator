@@ -1,31 +1,47 @@
 import React from "react";
 import GitHubButton from "react-github-btn";
 import ThemeToggle from "../ThemeToggle";
+import { Badge } from "../../src/components/ui/badge";
 
 const Navbar = () => {
   return (
-    <nav className="bg-white px-2 sm:px-4 py-2.5 dark:bg-gray-900 w-full z-20 top-0 left-0 border-b border-gray-200 dark:border-gray-600 transition-colors duration-200">
-      <div className="container flex flex-wrap items-center justify-between mx-auto">
-        <a href="https://vagrantfile-generator.vercel.app/" className="flex items-center">
-          <img src="images/vagrant-icon.png" className="h-6 mr-3 sm:h-10" alt="Vagrant Logo" />
-          <span className="self-center text-xl font-semibold whitespace-nowrap dark:text-white">
-            VagrantFile Generator
-          </span>
+    <header className="sticky top-0 z-50 w-full glass-strong">
+      <div className="container flex h-16 items-center justify-between">
+        <a
+          href="https://vagrantfile-generator.vercel.app/"
+          className="flex items-center gap-3 group"
+        >
+          <div className="relative">
+            <img
+              src="images/vagrant-icon.png"
+              className="h-8 transition-transform duration-200 group-hover:scale-110"
+              alt="Vagrant Logo"
+            />
+          </div>
+          <div className="flex items-center gap-2.5">
+            <span className="font-bold text-lg tracking-tight">
+              Vagrantfile Generator
+            </span>
+            <Badge variant="secondary" className="text-[10px] px-2 py-0.5 font-mono">
+              v2.0
+            </Badge>
+          </div>
         </a>
         <div className="flex items-center gap-3">
           <ThemeToggle />
+          <div className="h-5 w-px bg-border" />
           <GitHubButton
             href="https://github.com/jianan1104/vagrantfile-generator"
             data-icon="octicon-star"
             data-size="large"
             data-show-count="true"
-            aria-label="Star google/vagrantfile-generator on GitHub"
+            aria-label="Star jianan1104/vagrantfile-generator on GitHub"
           >
             Star
           </GitHubButton>
         </div>
       </div>
-    </nav>
+    </header>
   );
 };
 

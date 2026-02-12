@@ -1,53 +1,55 @@
-import React from 'react';
-import RadioCard from '../RadioCard';
-import { providers, virtualizationGroups } from '../constants';
+import React from "react";
+import RadioCard from "../RadioCard";
+import { providers, virtualizationGroups } from "../constants";
+import { Label } from "../../src/components/ui/label";
+import { Select } from "../../src/components/ui/select";
 
-const ProviderSelect = ({ 
-  formData, 
-  handleInputChange, 
-  handleGroupChange, 
-  selectedGroup 
+const ProviderSelect = ({
+  formData,
+  handleInputChange,
+  handleGroupChange,
+  selectedGroup,
 }) => {
   return (
-    <div className="mb-4">
-      <label
-        className="block text-gray-700 dark:text-gray-200 font-bold mb-2"
-        htmlFor="provider"
-      >
-        Provider
-      </label>
-
-      <div className="flex mb-2">
-        <select
-          id="countries"
-          onChange={handleGroupChange}
-          value={selectedGroup.name}
-          className="flex-shrink-0 z-10 inline-flex items-center py-2.5 px-4 text-sm font-medium text-center text-gray-500 bg-gray-100 border border-gray-300 rounded-l-lg hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700 dark:text-white dark:border-gray-600"
-        >
-          {virtualizationGroups.map((group) => (
-            <option key={group.id} value={group.name}>
-              {group.name}
-            </option>
-          ))}
-        </select>
-        <label htmlFor="groups" className="sr-only">
-          Choose a provider
-        </label>
-        <select
-          id="groups"
-          name="provider"
-          value={formData.provider}
-          onChange={handleInputChange}
-          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-r-lg border-l-gray-100 dark:border-l-gray-700 border-l-2 focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-        >
-          {selectedGroup.items.map((provider, idx) => (
-            <option key={idx} value={provider}>
-              {provider}
-            </option>
-          ))}
-        </select>
+    <div className="space-y-4">
+      <div className="flex gap-3">
+        <div className="space-y-2 flex-shrink-0">
+          <Label htmlFor="virtualization-group" className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
+            Category
+          </Label>
+          <Select
+            id="virtualization-group"
+            onChange={handleGroupChange}
+            value={selectedGroup.name}
+            className="w-[180px]"
+          >
+            {virtualizationGroups.map((group) => (
+              <option key={group.id} value={group.name}>
+                {group.name}
+              </option>
+            ))}
+          </Select>
+        </div>
+        <div className="space-y-2 flex-1">
+          <Label htmlFor="groups" className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
+            Provider
+          </Label>
+          <Select
+            id="groups"
+            name="provider"
+            value={formData.provider}
+            onChange={handleInputChange}
+          >
+            {selectedGroup.items.map((provider, idx) => (
+              <option key={idx} value={provider}>
+                {provider}
+              </option>
+            ))}
+          </Select>
+        </div>
       </div>
-      <ul className="grid w-full gap-6 md:grid-cols-4 grid-cols-2">
+
+      <ul className="grid w-full gap-3 grid-cols-2 md:grid-cols-4 lg:grid-cols-5">
         {providers.map((provider) => (
           <RadioCard
             key={provider.id}
